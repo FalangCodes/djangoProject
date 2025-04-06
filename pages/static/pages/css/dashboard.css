@@ -1,0 +1,209 @@
+/* General Reset and Body Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+  
+header {
+    background-color: #2196f3;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+  
+/* Balance Box Section */
+.balance-box {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px; /* Ensure the box doesn't stretch too wide */
+}
+  
+.balance-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.balance-item span {
+    font-size: 1.2rem;
+}
+  
+.balance-item span:first-child {
+    font-weight: bold;
+    color: #4caf50;
+}
+  
+.balance-item span:last-child {
+    font-size: 1.5rem;
+    color: #2196f3;
+}
+  
+/* Recent Expenses Section */
+.recent-expenses {
+    margin: 20px;
+    padding: 25px;
+    padding-left: 55px;
+    width: 100%;
+    max-width: 900px; /* Ensure the container doesn't stretch too wide */
+}
+  
+.recent-expenses h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+  
+.recent-grid {
+    display: flex;
+    justify-content: center;  /* Center the grid */
+    gap: 20px; /* Space between chart and summary */
+    margin-bottom: 20px;
+    width: 100%;
+}
+  
+.pie-chart {
+    flex: 1 1 45%; /* Take up 45% of the space, but will shrink as needed */
+    max-width: 400px; /* Limit the maximum width */
+    margin-right: 20px;
+}
+  
+.expense-summary {
+    flex: 1 1 45%; /* Take up 45% of the space */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+  
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+  
+.expense-log {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+.log-entry {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+  
+/* Bottom Action Button */
+.bottom-action {
+    text-align: center;
+    margin: 20px 0;
+}
+  
+.action-button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+  
+.action-button:hover {
+    background-color: #388e3c;
+}
+
+/* Budget and Expense Form */
+.budget-section {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .budget-box,
+  .expense-log {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  input[type="number"],
+  input[type="date"],
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.2rem;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #388e3c;
+  }
+  
+  
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .balance-box {
+        flex-direction: column;
+        align-items: center;
+    }
+  
+    .recent-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+  
+    .pie-chart {
+        margin-right: 0;
+        max-width: 80%;
+        margin-bottom: 20px;
+    }
+  
+    .expense-summary {
+        max-width: 80%;
+    }
+  
+    .log-entry {
+        font-size: 0.9rem;
+    }
+}
+

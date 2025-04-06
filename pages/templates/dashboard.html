@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{% static 'pages/css/dashboard.css' %}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Hi, {{ request.user.username }}</h1>
+  </header>
+
+  <section class="balance-box">
+    <div class="balance-item">
+      <span>Total Budget</span>
+      <span>R{{ income }}</span>
+    </div>
+    <div class="balance-item">
+      <span>Total Spent</span>
+      <span>R{{ spent }}</span>
+    </div>
+    <div class="balance-item">
+      <span>Remaining</span>
+      <span>R{{ remaining|floatformat:2 }}</span>
+    </div>
+  </section>
+
+  <section class="recent-expenses">
+    <h2>Recent Expenses</h2>
+    <div class="recent-grid">
+      <div class="pie-chart">
+        <canvas id="expensePie"></canvas>
+      </div>
+      <div class="expense-summary">
+        {% for expense in expenses %}
+          <div class="summary-item">
+            <span>{{ expense.category }}</span>
+            <span>R{{ expense.amount }}</span>
+          </div>
+        {% empty %}
+          <p>No recent expenses yet.</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="expense-log">
+        {% for expense in expenses %}
+          <div class="log-entry">
+            {{ expense.date|date:"F j, Y" }} - {{ expense.category }}: R{{ expense.amount }}
+          </div>
+        {% empty %}
+          <p>No expenses logged yet.</p>
+        {% endfor %}
+      </div>
+  </section>
+
+  <div class="bottom-action">
+    <a href="{% url 'log_expense' %}" class="action-button">Log Expense / Adjust Budget</a>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('expensePie').getContext('2d');
+    const data = {
+      labels: [
+        {% for expense in expenses %}'{{ expense.category }}',{% endfor %}'Remaining'
+      ],
+      datasets: [{
+        data: [
+          {% for expense in expenses %}{{ expense.amount }},{% endfor %}{{ remaining }}
+        ],
+        backgroundColor: [
+          '#4caf50', '#ff9800', '#f44336', '#2196f3', '#9c27b0', '#607d8b', '#00bcd4', '#e91e63', '#8bc34a', '#ffc107'
+        ]
+      }]
+    };
+    new Chart(ctx, {
+      type: 'pie',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

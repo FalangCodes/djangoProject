@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log Expense & Budget</title>
+  <link rel="stylesheet" href="{% static 'pages/css/dashboard.css' %}">
+</head>
+<body>
+
+  <header>
+    <h1>Log Expense & Budget</h1>
+  </header>
+
+  <section class="budget-section">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="budget-box">
+        <label for="monthly_income">Monthly Income (Budget):</label>
+        <input type="number" id="monthly_income" name="monthly_income" value="{{ monthly_income }}" placeholder="Enter your monthly budget" required>
+      </div>
+      
+      <h2>Log Expense</h2>
+      
+      <div class="expense-log">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+          <option value="" disabled selected>Select Category</option>
+          {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" value="{{ today|date:'Y-m-d' }}" required>
+      </div>
+
+      <div class="submit-btn">
+        <button type="submit">Update</button>
+      </div>
+    </form>
+  </section>
+
+</body>
+</html>
